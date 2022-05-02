@@ -43,7 +43,7 @@ class _PriceScreenState extends State<PriceScreen> {
     }
 
     return CupertinoPicker(
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: Colors.red,
       itemExtent: 32.0,
       onSelectedItemChanged: (selectedIndex) {
         setState(() {
@@ -58,7 +58,7 @@ class _PriceScreenState extends State<PriceScreen> {
   Map<String, String> coinValues = {};
   bool isWaiting = false;
 
-  void getData() async {
+  getData() async {
     isWaiting = true;
     try {
       var data = await CoinData().getCoinData(selectedCurrency);
@@ -84,7 +84,7 @@ class _PriceScreenState extends State<PriceScreen> {
         CryptoCard(
           cryptoCurrency: crypto,
           selectedCurrency: selectedCurrency,
-          value: coinValues.toString(),
+          value: isWaiting ? '?' : coinValues[crypto].toString(),
         ),
       );
     }
@@ -98,6 +98,7 @@ class _PriceScreenState extends State<PriceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: const Text('🤑 Coin Ticker'),
       ),
       body: Column(
@@ -109,7 +110,7 @@ class _PriceScreenState extends State<PriceScreen> {
             height: 150.0,
             alignment: Alignment.center,
             padding: const EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
+            color: Colors.red,
             child: Platform.isIOS ? iOSPicker() : androidDropdown(),
           ),
         ],
@@ -135,7 +136,7 @@ class CryptoCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
       child: Card(
-        color: Colors.lightBlueAccent,
+        color: Colors.red,
         elevation: 5.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),

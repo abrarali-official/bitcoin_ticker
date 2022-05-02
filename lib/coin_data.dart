@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 const List<String> currenciesList = [
@@ -38,7 +39,8 @@ class CoinData {
     for (String crypto in cryptoList) {
       String requestURL =
           '$coinAPIURL/$crypto/$selectedCurrency?apikey=$apiKey';
-      http.Response response = await http.get(Uri.dataFromString(requestURL));
+      http.Response response = await http.get(Uri.parse(requestURL));
+      print(requestURL);
       if (response.statusCode == 200) {
         var decodedData = jsonDecode(response.body);
         double price = decodedData['rate'];
