@@ -1,4 +1,4 @@
-const List currenciesList = [
+const List<String> currenciesList = [
   'AUD',
   'BRL',
   'CAD',
@@ -22,7 +22,7 @@ const List currenciesList = [
   'ZAR'
 ];
 
-const List cryptoList = [
+const List<String> cryptoList = [
   'BTC',
   'ETH',
   'LTC',
